@@ -1,0 +1,101 @@
+{% extends "insurance/adminbase.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<h2 class="mb-4">Submitted Claims</h2>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Policy Number</th>
+            <th>Claim Reason</th>
+            <th>Claim Amount</th>
+            <th>Supporting Document</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for claim in claims %}
+    <tr id="row-{{ claim.id }}">
+        <td>{{ claim.id }}</td>
+        <td>{{ claim.policy_number }}</td>
+        <td>{{ claim.claim_reason }}</td>
+        <td>${{ claim.claim_amount }}</td>
+        <td>
+          {% if claim.supporting_document %}
+              
+              <a href="{{ claim.supporting_document.url }}" target="_blank" class="btn btn-info btn-sm">View Document</a>
+          {% else %}
+              <span class="text-muted">No Document</span>
+          {% endif %}
+      </td>
+      
+        <td id="status-{{ claim.id }}">{{ claim.status }}</td>
+<td>
+    <button onclick="updateStatus({{ claim.id }}, 'Approved')">Approve</button>
+    <button onclick="updateStatus({{ claim.id }}, 'Rejected')">Reject</button>
+</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<!-- CSRF Token for AJAX -->
+<input type="hidden" id="csrf_token" value="{{ csrf_token }}">
+
+<script>
+  function updateStatus(claimId, newStatus) {
+      fetch(`/customer/claims/update/${claimId}/${newStatus}/`, {
+          method: 'POST',  // Use POST instead of GET
+          headers: {
+              'Content-Type': 'application/json',  // Ensure JSON request
+              'X-CSRFToken': getCSRFToken()  // CSRF token for security
+          },
+          body: JSON.stringify({})
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not OK');
+          }
+          return response.json();
+      })
+      .then(data => {
+          if (data.success) {
+              document.getElementById(`status-${claimId}`).innerText = newStatus;
+          } else {
+              alert("Error: " + data.error);
+          }
+      })
+      .catch(error => {
+          alert("Request failed: " + error);
+      });
+  }
+  
+  // Function to get CSRF token (for security)
+  function getCSRFToken() {
+      let cookieValue = null;
+      let cookies = document.cookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+          let cookie = cookies[i].trim();
+          if (cookie.startsWith("csrftoken=")) {
+              cookieValue = cookie.substring("csrftoken=".length, cookie.length);
+              break;
+          }
+      }
+      return cookieValue;
+  }
+  </script>
+  
+  
+  
+{% endblock %}

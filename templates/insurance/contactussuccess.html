@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Message Sent | Rentals</title>
+
+  <style>
+    /* Smooth Background Animation */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #f8f9fa, #e9ecef);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      animation: gradientAnimation 6s infinite alternate;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background: linear-gradient(120deg, #f8f9fa, #e9ecef);
+      }
+      100% {
+        background: linear-gradient(120deg, #dde1e7, #f1f3f5);
+      }
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Card-Like Box */
+    .jumbotron {
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 500px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .jumbotron h1 {
+      font-size: 2rem;
+      color: #343a40;
+      margin-bottom: 10px;
+    }
+
+    .jumbotron p {
+      font-size: 1.1rem;
+      color: #6c757d;
+    }
+
+    .btn-custom {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: white;
+      background: #007bff;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-custom:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+
+    /* Button Ripple Effect */
+    .btn-custom::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .btn-custom:hover::after {
+      opacity: 1;
+    }
+
+    /* Floating Bubbles Animation */
+    .bubbles {
+      position: fixed;
+      bottom: -50px;
+      left: 50%;
+      width: 200px;
+      height: 200px;
+      background: rgba(0, 123, 255, 0.3);
+      border-radius: 50%;
+      filter: blur(50px);
+      animation: floating 8s infinite ease-in-out alternate;
+    }
+
+    @keyframes floating {
+      from {
+        transform: translateY(20px) scale(1);
+      }
+      to {
+        transform: translateY(-20px) scale(1.1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  {% include "insurance/navbar.html" %}
+  
+  <div class="container">
+    <div class="jumbotron">
+      <h1>🎉 Message Sent Successfully!</h1>
+      <p>Thank you for reaching out! We will get back to you soon.</p>
+      <hr>
+      <p>Explore more features on our website.</p>
+      <a class="btn-custom" href="/">Go to Home</a>
+    </div>
+  </div>
+
+  <div class="bubbles"></div>
+
+  {% include "insurance/footer.html" %}
+
+  <script>
+    // Button Click Animation
+    document.querySelector('.btn-custom').addEventListener('click', function (event) {
+      event.target.style.transform = "scale(0.95)";
+      setTimeout(() => {
+        event.target.style.transform = "scale(1)";
+      }, 150);
+    });
+  </script>
+
+</body>
+
+</html>

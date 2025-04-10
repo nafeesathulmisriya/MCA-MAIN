@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureLife Insurance | Protect Your Future</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --light-color: #f8fafc;
+            --dark-color: #1e293b;
+            --text-color: #334155;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        .hero-section {
+            margin-bottom: 0px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('{% static "image/home1.jpg" %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            width: 100%;
+        }
+        
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        }
+        
+        .quote-section {
+            background-color: var(--light-color);
+            padding: 4rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .quote-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--dark-color);
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 2rem;
+        }
+        
+        .quote-text:before, .quote-text:after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.5;
+            position: absolute;
+        }
+        
+        .quote-text:before {
+            top: -20px;
+            left: 0;
+        }
+        
+        .quote-text:after {
+            bottom: -40px;
+            right: 0;
+        }
+        
+        .quote-author {
+            font-style: italic;
+            margin-top: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+            background: white;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .quote-text {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+  {% include "insurance/navbar.html" %}
+  
+  <section id="section-jumbotron" class="hero-section">
+      <div class="floating-shapes">
+          <!-- Floating background shapes -->
+          <div class="shape" style="width: 100px; height: 100px; left: 10%; top: 10%;"></div>
+          <div class="shape" style="width: 150px; height: 150px; left: 30%; top: 20%;"></div>
+          <div class="shape" style="width: 80px; height: 80px; left: 70%; top: 30%;"></div>
+          <div class="shape" style="width: 120px; height: 120px; left: 80%; top: 60%;"></div>
+          <div class="shape" style="width: 60px; height: 60px; left: 20%; top: 80%;"></div>
+      </div>
+      
+      <div class="hero-content animate__animated animate__fadeIn">
+          <h1 class="hero-title">Secure Your Family's Future</h1>
+          <p class="hero-subtitle">"Shielding your dreams today while securing tomorrow – intelligent protection for every stage of life.".</p>
+          
+      </div>
+  </section>
+
+  <div class="quote-section">
+      <p class="quote-text animate__animated animate__fadeInUp">"Whole life does two things for you: Protects your family and allows you to save for your future."</p>
+      
+  </div>
+  
+  {% include "insurance/footer.html" %}
+
+  <script>
+      // Generate random floating shapes
+      document.addEventListener('DOMContentLoaded', function() {
+          const shapesContainer = document.querySelector('.floating-shapes');
+          const colors = ['#3b82f6', '#ffffff', '#93c5fd'];
+          
+          for (let i = 0; i < 10; i++) {
+              const shape = document.createElement('div');
+              shape.classList.add('shape');
+              
+              const size = Math.random() * 100 + 50;
+              const left = Math.random() * 100;
+              const top = Math.random() * 100;
+              const color = colors[Math.floor(Math.random() * colors.length)];
+              const duration = Math.random() * 20 + 10;
+              const delay = Math.random() * 5;
+              
+              shape.style.width = `${size}px`;
+              shape.style.height = `${size}px`;
+              shape.style.left = `${left}%`;
+              shape.style.top = `${top}%`;
+              shape.style.background = color;
+              shape.style.animationDuration = `${duration}s`;
+              shape.style.animationDelay = `${delay}s`;
+              
+              shapesContainer.appendChild(shape);
+          }
+      });
+  </script>
+</body>
+</html>

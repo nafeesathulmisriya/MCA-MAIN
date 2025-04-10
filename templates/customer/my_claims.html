@@ -1,0 +1,24 @@
+{% extends 'customer/customerbase.html' %}
+{% load static %}
+{% block content %}
+<h2>My Insurance Claims</h2>
+
+<table border="1">
+    <tr>
+        <th>Policy Number</th>
+        <th>Status</th>
+    </tr>
+
+    {% for claim in claims %}
+    <tr>
+        <td>{{ claim.policy_number }}</td>
+        <td>{{ claim.status }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="2">No claims submitted yet.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

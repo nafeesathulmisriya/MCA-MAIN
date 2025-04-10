@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Login</title>
+    <style media="screen">
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-image: url("{% static 'image/homepage.jpg' %}"); /* Replace with your image URL */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .log-form {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .log-form h2 {
+        font-size: 1.75rem;
+        color: #333;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+      }
+
+      .log-form input {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+      }
+
+      .log-form input:focus {
+        border-color: #667eea;
+        outline: none;
+      }
+
+      .log-form .btn {
+        background: #667eea;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .log-form .btn:hover {
+        background: #5a6fd1;
+      }
+
+      .log-form .btn:active {
+        background: #4a5ebf;
+      }
+
+      .log-form .btn:focus {
+        outline: none;
+      }
+
+      .log-form .remember-me {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .log-form .remember-me input {
+        margin-right: 0.5rem;
+      }
+
+      .log-form .remember-me label {
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      .log-form .forgot-password {
+        display: block;
+        margin-top: 1rem;
+        color: #667eea;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+
+      .log-form .forgot-password:hover {
+        color: #5a6fd1;
+      }
+    </style>
+  </head>
+  <body>
+    {% include "insurance/navbar.html" %}
+
+    <div class="log-form">
+      <h2>LOGIN TO YOUR ACCOUNT</h2>
+      <form method="post">
+        {% csrf_token %}
+        {% render_field form.username class="form-control" placeholder="Username" %}
+        <br>
+        {% render_field form.password class="form-control" placeholder="Password" %}
+        <br>
+        
+        <button type="submit" class="btn">Login</button>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </form>
+    </div>
+
+    {% include "insurance/footer.html" %}
+  </body>
+</html>

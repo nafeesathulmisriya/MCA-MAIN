@@ -1,0 +1,70 @@
+{% extends 'customer/customerbase.html' %}  <!-- Ensure this extends your customer base template -->
+{% load static %}
+{% block content %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <style>
+        h2 {
+            text-align: center;
+            color: green;
+            margin-top: 20px;
+        }
+        .category-list {
+            margin: 50px auto;
+            max-width: 800px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .category-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .category-item:last-child {
+            border-bottom: none;
+        }
+        .category-name {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .category-description {
+            font-size: 14px;
+            color: #555;
+        }
+        .sidebar .profile_image {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            margin-bottom: 10px;
+          }
+          .sidebar {
+            background: #2f323a;
+            margin-top: 70px;
+            padding-top: 30px;
+            position: fixed;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            transition: 0.5s;
+            transition-property: left;
+          }
+    </style>
+</head>
+
+<h2>Available Categories</h2>
+<div class="category-list">
+    {% for category in categories %}
+        <div class="category-item">
+            <span class="category-name">{{ category.category_name }}</span>
+            <p class="category-description">{{ category.creation_date }}</p>
+        </div>
+    {% empty %}
+        <p>No categories available at the moment.</p>
+    {% endfor %}
+</div>
+{% endblock content %}
