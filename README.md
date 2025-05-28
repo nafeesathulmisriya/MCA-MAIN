@@ -94,5 +94,3 @@ The project is divided into two main Django apps:
    py manage.py makemigrations
    py manage.py migrate
 3. py manage.py runserver
-
-work kazhinja call cheyutta
